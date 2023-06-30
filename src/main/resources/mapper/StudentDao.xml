@@ -20,8 +20,8 @@
     </resultMap>
 
     <insert id="saveStudent" parameterType="com.kaiyu.entity.Student">
-        insert into student(student_no, student_name, sex, dorm_id)
-        VALUES (#{studentNo}, #{studentName}, #{sex}, #{dormId})
+        insert into student(student_no, student_name, sex, dorm_id, create_at, update_at)
+        VALUES (#{studentNo}, #{studentName}, #{sex}, #{dormId}, #{createAt}, #{updateAt})
     </insert>
 
     <update id="editStudent" parameterType="com.kaiyu.entity.Student">
@@ -38,6 +38,9 @@
             </if>
             <if test="dormId != null and dormId != ''">
                 dorm_id = #{dormId},
+            </if>
+            <if test="updateAt != null">
+                update_at = #{updateAt},
             </if>
         </set>
         where id = #{id}

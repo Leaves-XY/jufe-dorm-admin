@@ -19,8 +19,8 @@
     </resultMap>
 
     <insert id="registerUser" parameterType="com.kaiyu.entity.User">
-        INSERT INTO user (name, phone, enabled, username, password, remark)
-        VALUES (#{name}, #{phone}, #{enabled}, #{username}, #{password}, #{remark})
+        INSERT INTO user (name, phone, enabled, username, password, remark, create_at, update_at)
+        VALUES (#{name}, #{phone}, #{enabled}, #{username}, #{password}, #{remark}, #{createAt}, #{updateAt})
     </insert>
 
     <insert id="saveUser">
@@ -50,6 +50,9 @@
             </if>
             <if test="remark != null and remark != '' ">
                 remark = #{remark},
+            </if>
+            <if test="updateAt != null">
+                update_at = #{updateAt},
             </if>
         </set>
         where id = #{id}

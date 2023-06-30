@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,10 +35,13 @@ public class StudentService {
     }
 
     public int saveStudent(Student student) {
+        student.setCreateAt(LocalDate.now().toString());
+        student.setUpdateAt(LocalDate.now().toString());
         return studentDao.saveStudent(student);
     }
 
     public int editStudent(Student student) {
+        student.setUpdateAt(LocalDate.now().toString());
         return studentDao.editStudent(student);
     }
 

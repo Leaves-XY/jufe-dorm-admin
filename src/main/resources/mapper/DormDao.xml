@@ -20,8 +20,8 @@
     </resultMap>
 
     <insert id="saveDorm">
-        insert into dorm(name, building_id, max_num, remark)
-        VALUES (#{name}, #{buildingId}, #{maxNum}, #{remark})
+        insert into dorm(name, building_id, max_num, remark, create_at, update_at)
+        VALUES (#{name}, #{buildingId}, #{maxNum}, #{remark}, #{createAt}, #{updateAt})
     </insert>
 
     <update id="editDorm">
@@ -38,6 +38,9 @@
             </if>
             <if test="remark != null and remark != ''">
                 remark = #{remark},
+            </if>
+            <if test="updateAt != null">
+                update_at = #{updateAt},
             </if>
         </set>
         where id = #{id}

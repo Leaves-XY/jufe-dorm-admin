@@ -7,6 +7,7 @@ import com.kaiyu.model.ResponsePage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,10 +37,14 @@ public class DormService {
     }
 
     public int saveDorm(Dorm dorm) {
+        dorm.setCreateAt(LocalDate.now().toString());
+        dorm.setUpdateAt(LocalDate.now().toString());
+
         return dormDao.saveDorm(dorm);
     }
 
     public int editDorm(Dorm dorm) {
+        dorm.setUpdateAt(LocalDate.now().toString());
         return dormDao.editDorm(dorm);
     }
 

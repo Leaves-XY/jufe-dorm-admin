@@ -12,6 +12,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.util.List;
 
 /**
@@ -64,6 +65,7 @@ public class UserServiceImpl implements UserDetailsService {
     }
 
     public int updateUser(User user) {
+        user.setUpdateAt(LocalDate.now().toString());
         return userDao.updateUser(user);
     }
 
@@ -81,7 +83,8 @@ public class UserServiceImpl implements UserDetailsService {
 
         user.setEnabled(true);
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        System.out.println(user);
+        user.setCreateAt(LocalDate.now().toString());
+        user.setUpdateAt(LocalDate.now().toString());
         userDao.registerUser(user);
     }
 }

@@ -7,6 +7,7 @@ import com.kaiyu.model.ResponsePage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,10 +37,13 @@ public class BuildingService {
     }
 
     public int saveBuilding(Building building) {
+        building.setUpdateAt(LocalDate.now().toString());
+        building.setCreateAt(LocalDate.now().toString());
         return buildingDao.saveBuilding(building);
     }
 
     public int editBuilding(Building building) {
+        building.setUpdateAt(LocalDate.now().toString());
         return buildingDao.editBuilding(building);
     }
 

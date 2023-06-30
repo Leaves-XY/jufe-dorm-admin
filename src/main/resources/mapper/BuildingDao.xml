@@ -27,8 +27,8 @@
     </select>
 
     <insert id="saveBuilding" parameterType="com.kaiyu.entity.Building">
-        insert into building(name, building_type, remark)
-        VALUES (#{name}, #{buildingType}, #{remark})
+        insert into building(name, building_type, remark, create_at, update_at)
+        VALUES (#{name}, #{buildingType}, #{remark}, #{createAt}, #{updateAt})
     </insert>
 
     <update id="editBuilding" parameterType="com.kaiyu.entity.Building">
@@ -42,6 +42,9 @@
             </if>
             <if test="remark != null and remark != ''">
                 remark = #{remark},
+            </if>
+            <if test="updateAt != null">
+                update_at = #{updateAt},
             </if>
         </set>
         where id = #{id}
