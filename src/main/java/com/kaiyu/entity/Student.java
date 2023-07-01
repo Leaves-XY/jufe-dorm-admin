@@ -18,6 +18,8 @@ public class Student implements Serializable {
     private Dorm dorm;
     private String createAt;
     private String updateAt;
+    private Integer majorId;
+    private Major major;
 
     private static final long serialVersionUID = 1L;
 }

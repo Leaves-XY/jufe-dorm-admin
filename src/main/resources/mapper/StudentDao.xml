@@ -12,16 +12,27 @@
         <result property="dormId" column="dorm_id"/>
     </resultMap>
 
+    <resultMap id="MajorResultMap" type="com.kaiyu.entity.Major">
+        <id property="id" column="mid"/>
+        <result property="name" column="mname"/>
+        <result property="depId" column="mdepId"/>
+        <association property="depart" javaType="com.kaiyu.entity.Depart">
+            <id property="id" column="depid"/>
+            <result property="name" column="depname"/>
+        </association>
+    </resultMap>
+
     <resultMap id="relatedMap" type="com.kaiyu.entity.Student" extends="baseResultMap">
         <association property="dorm" javaType="com.kaiyu.entity.Dorm">
             <id property="id" column="did"/>
             <result property="name" column="dname"/>
         </association>
+        <association property="major" resultMap="MajorResultMap"/>
     </resultMap>
 
     <insert id="saveStudent" parameterType="com.kaiyu.entity.Student">
-        insert into student(student_no, student_name, sex, dorm_id, create_at, update_at)
-        VALUES (#{studentNo}, #{studentName}, #{sex}, #{dormId}, #{createAt}, #{updateAt})
+        insert into student(student_no, student_name, sex, dorm_id,major_id, create_at, update_at)
+        VALUES (#{studentNo}, #{studentName}, #{sex}, #{dormId}, #{majorId},#{createAt}, #{updateAt})
     </insert>
 
     <update id="editStudent" parameterType="com.kaiyu.entity.Student">
@@ -42,6 +53,9 @@
             <if test="updateAt != null">
                 update_at = #{updateAt},
             </if>
+            <if test="majorId != null and majorId != ''">
+                major_id = #{majorId},
+            </if>
         </set>
         where id = #{id}
     </update>
@@ -55,9 +69,13 @@
     </delete>
 
     <select id="getStudentByName" resultMap="relatedMap">
-        select s.id,s.student_no,s.student_name,s.sex,s.dorm_id,d.id as did,d.name as dname
+        select s.id,s.student_no,s.student_name,s.sex,s.dorm_id,d.id as did,d.name as dname,
+        m.id as mid, m.name as mname, m.dep_id as mdepId,
+        dep.id as depid, dep.name as depname
         from student s
         left join dorm d on d.id = s.dorm_id
+        left join major m on m.id = s.major_id
+        left join depart dep on dep.id = m.dep_id
         <where>
             <if test="studentName != null and studentName !=''">
                 s.student_name like CONCAT('%',#{studentName},'%')
