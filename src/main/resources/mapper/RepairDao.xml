@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kaiyu.dao.RepairDao">
+    <resultMap id="getAllRepairs" type="com.kaiyu.entity.Repair">
+        <id property="id" column="id"/>
+        <result property="title" column="title"/>
+        <result property="description" column="description"/>
+        <result property="createAt" column="create_at"/>
+    </resultMap>
+
+    <select id="getAllRepairs" resultMap="getAllRepairs">
+        select *
+        from repairs
+    </select>
+    
+</mapper>

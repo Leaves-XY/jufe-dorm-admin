@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kaiyu.dao.OutsiderDao">
+    <resultMap id="outsiderResultMap" type="com.kaiyu.entity.Outsider">
+        <id property="id" column="id"/>
+        <result property="buildId" column="build_id"/>
+        <result property="createAt" column="create_at"/>
+        <result property="reason" column="reason"/>
+        <result property="buildName" column="build_name"/>
+    </resultMap>
+
+    <select id="getAllOutsiders" resultType="com.kaiyu.entity.Outsider">
+        SELECT o.id, o.build_id, o.create_at, o.reason, b.name AS buildName
+        FROM outsiders o
+                 LEFT JOIN building b ON o.build_id = b.id
+    </select>
+</mapper>
