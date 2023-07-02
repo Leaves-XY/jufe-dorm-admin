@@ -17,8 +17,8 @@ public class CorsConfig {
         return new WebMvcConfigurer() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/api/**")
-                        .allowedOrigins("http://localhost:7071")
+                registry.addMapping("/**")
+                        .allowedOriginPatterns("*")  // 修改这里
                         .allowedMethods("HEAD","GET","POST","OPTIONS","PUT","DELETE")
                         .allowedHeaders("*")
                         .exposedHeaders("access-control-allow-headers",

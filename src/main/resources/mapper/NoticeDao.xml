@@ -21,21 +21,21 @@
         n.build_id,
         n.create_at,
         b.name as build_name  <!-- fetch the building name -->
-        FROM Notice n
-        LEFT JOIN Building b on n.build_id = b.id  <!-- join with building table -->
+        FROM notice n
+        LEFT JOIN building b on n.build_id = b.id  <!-- join with building table -->
     </select>
 
     <insert id="saveNotice" parameterType="com.kaiyu.entity.Notice">
-        insert into Notice(type, content, publisher, build_id, create_at)
+        insert into notice(type, content, publisher, build_id, create_at)
         VALUES (#{type}, #{content}, #{publisher}, #{build_id}, NOW())
     </insert>
 
     <delete id="deleteNotice" parameterType="int">
-        delete from Notice where id = #{id}
+        delete from notice where id = #{id}
     </delete>
 
     <update id="editNotice" parameterType="com.kaiyu.entity.Notice">
-        update Notice
+        update notice
         <set>
             <if test="type != null and type != '' ">
                 type = #{type},
