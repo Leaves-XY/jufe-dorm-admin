@@ -19,10 +19,16 @@ public class StudentController {
     @Autowired
     private StudentService studentService;
 
+//    @GetMapping("/list")
+//    public ResponsePage getStudentPage(Integer page, Integer size, String name) {
+//        return studentService.getStudentByName(page, size, name);
+//    }
+
     @GetMapping("/list")
     public ResponsePage getStudentPage(Integer page, Integer size, String name) {
         return studentService.getStudentByName(page, size, name);
     }
+
 
     @PostMapping("/add")
     public ResponseMsg saveOrEditStudent(@RequestBody Student student) {

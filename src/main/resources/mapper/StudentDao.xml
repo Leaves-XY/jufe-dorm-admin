@@ -78,7 +78,7 @@
         left join depart dep on dep.id = m.dep_id
         <where>
             <if test="studentName != null and studentName !=''">
-                s.student_name like CONCAT('%',#{studentName},'%')
+                s.student_name like CONCAT('%',#{studentName},'%') or s.student_no like CONCAT('%',#{studentName},'%')
             </if>
         </where>
     </select>
