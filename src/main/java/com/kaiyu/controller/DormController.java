@@ -48,10 +48,14 @@ public class DormController {
 
     @PostMapping("/del")
     public ResponseMsg deleteDorms(@RequestBody List<Dorm> dorms) {
-        if (dormService.deleteDorms(dorms) >= 1) {
-            return ResponseMsg.ok("删除成功！");
-        } else {
-            return ResponseMsg.error("删除失败！");
+        try {
+            if (dormService.deleteDorms(dorms) >= 1) {
+                return ResponseMsg.ok("删除成功！");
+            } else {
+                return ResponseMsg.error("删除失败！");
+            }
+        } catch (Exception e) {
+            return ResponseMsg.error("删除失败！寝室有人住" );
         }
     }
 }

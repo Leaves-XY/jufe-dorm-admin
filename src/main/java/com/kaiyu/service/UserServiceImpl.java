@@ -73,6 +73,10 @@ public class UserServiceImpl implements UserDetailsService {
         return userDao.getUserByName(UserUtils.getCurrentUser().getId(), name);
     }
 
+    public int getUserCount(String username) {
+        return userDao.getUserCount(username);
+    }
+
     public int deleteUsers(User user) {
         userRoleDao.deleteByUserId(user.getId());
         return userDao.deleteUser(user.getId());

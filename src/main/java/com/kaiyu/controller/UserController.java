@@ -37,6 +37,10 @@ public class UserController {
 
     @PostMapping("/register")
     public ResponseMsg userRegister(@RequestBody User user) {
+        //检查用户名等信息是否重复
+        if (userService.getUserCount(user.getUsername()) > 0) {
+            return ResponseMsg.error("用户名已存在!");
+        }
         try {
             userService.registerUser(user);
             return ResponseMsg.ok("注册成功!");

@@ -3,6 +3,7 @@ package com.kaiyu.dao;
 import com.kaiyu.entity.Role;
 import com.kaiyu.entity.User;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -30,4 +31,7 @@ public interface UserDao {
     int deleteUser(Integer userId);
 
     void registerUser(User user);
+
+    @Select("SELECT COUNT(*) FROM user WHERE username = #{username}")
+    int getUserCount(String username);
 }

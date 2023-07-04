@@ -49,6 +49,7 @@ public class DormService {
     }
 
     public int deleteDorms(List<Dorm> dorms) {
+
         List<Integer> ids = new ArrayList<>();
         for (Dorm dorm : dorms) {
             ids.add(dorm.getId());
