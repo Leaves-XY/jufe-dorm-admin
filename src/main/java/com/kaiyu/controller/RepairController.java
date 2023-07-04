@@ -1,9 +1,11 @@
 package com.kaiyu.controller;
 
 import com.kaiyu.entity.Repair;
+import com.kaiyu.model.ResponseMsg;
 import com.kaiyu.service.RepairService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,5 +28,16 @@ public class RepairController {
         List<Repair> repairs= repairService.getAllRepairs();
 //        System.out.println(repairs);
        return repairs;
+    }
+
+    @DeleteMapping("/del")
+    public ResponseMsg deleteRepair(Integer id){
+        try {
+            repairService.deleteRepair(id);
+            return ResponseMsg.ok("删除成功！");
+        }catch (Exception e){
+            return ResponseMsg.error("删除失败！");
+        }
+
     }
 }

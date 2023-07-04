@@ -13,5 +13,10 @@
         select *
         from repairs
     </select>
+
+    <delete id="deleteRepair" parameterType="integer">
+        delete from repairs
+        where id = #{id}
+    </delete>
     
 </mapper>

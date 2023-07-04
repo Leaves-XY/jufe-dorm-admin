@@ -18,6 +18,11 @@
                  INNER JOIN student s ON f.stu_id = s.id
     </select>
 
+    <delete id="deleteFeedback" parameterType="integer">
+        delete from feedback
+        where id = #{id}
+    </delete>
+
 
 
 </mapper>

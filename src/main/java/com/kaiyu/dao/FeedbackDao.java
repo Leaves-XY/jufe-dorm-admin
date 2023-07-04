@@ -13,4 +13,6 @@ import java.util.List;
 @Repository
 public interface FeedbackDao {
     List<Feedback> getAllFeedbacks();
+
+    void deleteFeedback(Integer id);
 }

@@ -16,6 +16,8 @@ public class Dorm implements Serializable {
     private Integer maxNum;
     private String remark;
     private Building building;
+    private Integer remain;
+    private Integer sex;
 
     private String createAt;
     private String updateAt;

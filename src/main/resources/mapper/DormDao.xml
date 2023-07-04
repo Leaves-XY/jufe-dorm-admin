@@ -55,9 +55,10 @@
     </delete>
 
     <select id="getDormAll" resultMap="baseResultMap">
-        select id, name, building_id, max_num, remark
+        select id, name, building_id, max_num, remark,sex,remain
         from dorm
     </select>
+
 
     <select id="getDormByName" resultMap="related">
         select d.id, d.name, d.building_id, d.max_num, d.remark, b.id as bid,b.name as bname

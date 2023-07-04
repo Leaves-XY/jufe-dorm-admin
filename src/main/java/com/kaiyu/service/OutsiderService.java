@@ -20,4 +20,8 @@ public class OutsiderService {
     public List<Outsider> getAllOutsiders(){
         return outsiderDao.getAllOutsiders();
     }
+
+    public void deleteOutsider(Integer id) {
+        outsiderDao.deleteOutsider(id);
+    }
 }

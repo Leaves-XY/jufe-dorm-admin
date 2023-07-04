@@ -25,4 +25,9 @@ public interface DormDao {
 
     @Select("select count(*) from dorm where name = #{name}")
     int countByName(String dormName);
+
+    @Select("select remain from dorm where id = #{id}")
+    int remainingBeds(Integer id);
+
+
 }

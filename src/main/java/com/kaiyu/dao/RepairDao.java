@@ -13,4 +13,6 @@ import java.util.List;
 @Repository
 public interface RepairDao {
     List<Repair> getAllRepairs();
+
+    void deleteRepair(Integer id);
 }

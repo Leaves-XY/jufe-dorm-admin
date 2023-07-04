@@ -15,4 +15,9 @@
         FROM outsiders o
                  LEFT JOIN building b ON o.build_id = b.id
     </select>
+
+    <delete id="deleteOutsider" parameterType="integer">
+        delete from outsiders
+        where id = #{id}
+    </delete>
 </mapper>

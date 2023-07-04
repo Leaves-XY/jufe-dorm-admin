@@ -20,4 +20,8 @@ public class RepairService {
     public List<Repair> getAllRepairs(){
         return repairDao.getAllRepairs();
     }
+
+    public void deleteRepair(Integer id) {
+        repairDao.deleteRepair(id);
+    }
 }

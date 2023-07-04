@@ -61,4 +61,12 @@ public class DormService {
     public int countByName(String dormName) {
         return dormDao.countByName(dormName);
     }
+
+    public int remainingBeds(Integer dormId) {
+       Integer count= dormDao.remainingBeds(dormId);
+        System.out.println("寝室剩余人数"+count);
+        return count;
+    }
+
+
 }
