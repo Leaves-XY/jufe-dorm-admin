@@ -32,7 +32,10 @@ public class BuildingController {
     @PostMapping("/add")
     public ResponseMsg saveOrEditBuilding(@RequestBody Building building) {
         if (null == building.getId()) {
-            if (buildingService.saveBuilding(building) >= 1) {
+            if (buildingService.countBuildingByName(building.getName()) > 0) {
+                return ResponseMsg.error("楼栋已存在！");
+            }
+            else if (buildingService.saveBuilding(building) >= 1) {
                 return ResponseMsg.ok("添加成功！");
             } else {
                 return ResponseMsg.error("添加失败！");

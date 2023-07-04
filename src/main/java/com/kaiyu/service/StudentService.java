@@ -52,4 +52,8 @@ public class StudentService {
         }
         return studentDao.deleteStudents(ids);
     }
+
+    public int countStudentByNumber(String studentNo) {
+        return studentDao.countStudentByNumber(studentNo);
+    }
 }

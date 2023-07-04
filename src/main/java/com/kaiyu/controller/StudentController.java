@@ -33,7 +33,10 @@ public class StudentController {
     @PostMapping("/add")
     public ResponseMsg saveOrEditStudent(@RequestBody Student student) {
         if (null == student.getId()) {
-            if (studentService.saveStudent(student) >= 1) {
+            if(studentService.countStudentByNumber(student.getStudentNo())>0 ){
+                return ResponseMsg.error("学号已存在！");
+            }
+            else if (studentService.saveStudent(student) >= 1) {
                 return ResponseMsg.ok("添加成功！");
             } else {
                 return ResponseMsg.error("添加失败！");

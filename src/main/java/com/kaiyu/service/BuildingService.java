@@ -54,4 +54,8 @@ public class BuildingService {
         }
         return buildingDao.deleteBuildings(ids);
     }
+
+    public int countBuildingByName(String name) {
+        return buildingDao.countBuildingByName(name);
+    }
 }

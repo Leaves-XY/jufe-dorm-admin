@@ -2,6 +2,7 @@ package com.kaiyu.dao;
 
 import com.kaiyu.entity.Student;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -19,4 +20,7 @@ public interface StudentDao {
     int editStudent(Student student);
 
     int deleteStudents(@Param("ids") List<Integer> ids);
+
+    @Select("select count(*) from student where student_no = #{studentNo}")
+    int countStudentByNumber(String studentNo);
 }

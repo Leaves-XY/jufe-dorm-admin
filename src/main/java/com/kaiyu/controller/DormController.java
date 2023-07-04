@@ -32,7 +32,10 @@ public class DormController {
     @PostMapping("/add")
     public ResponseMsg saveOrEditDorm(@RequestBody Dorm dorm) {
         if (null == dorm.getId()) {
-            if (dormService.saveDorm(dorm) >= 1) {
+            if(dormService.countByName(dorm.getName())>0){
+                return ResponseMsg.error("寝室已存在！");
+            }
+            else if (dormService.saveDorm(dorm) >= 1) {
                 return ResponseMsg.ok("添加成功！");
             } else {
                 return ResponseMsg.error("添加失败！");

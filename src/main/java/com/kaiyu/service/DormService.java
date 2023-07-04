@@ -19,6 +19,7 @@ import static com.github.pagehelper.page.PageMethod.startPage;
 @Service
 public class DormService {
 
+
     @Autowired
     private DormDao dormDao;
 
@@ -55,5 +56,9 @@ public class DormService {
             ids.add(dorm.getId());
         }
         return dormDao.deleteDorms(ids);
+    }
+
+    public int countByName(String dormName) {
+        return dormDao.countByName(dormName);
     }
 }

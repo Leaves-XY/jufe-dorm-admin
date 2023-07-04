@@ -2,6 +2,7 @@ package com.kaiyu.dao;
 
 import com.kaiyu.entity.Dorm;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -21,4 +22,7 @@ public interface DormDao {
     int editDorm(Dorm dorm);
 
     int deleteDorms(@Param("ids") List<Integer> ids);
+
+    @Select("select count(*) from dorm where name = #{name}")
+    int countByName(String dormName);
 }
